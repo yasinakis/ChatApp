@@ -2,7 +2,8 @@ using ChatApp.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
 using ChatApp.Server.Hubs;
-
+using ChatApp.Server.Models;
+using ChatApp.Server.Repositories;
 namespace ChatApp.Server
 {
     public class Program
@@ -17,6 +18,7 @@ namespace ChatApp.Server
             builder.Services.AddRazorPages();
             builder.Services.AddControllers();
             builder.Services.AddSignalR();
+            builder.Services.AddScoped<IMessageRepository, MessageRepository>();
             builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
